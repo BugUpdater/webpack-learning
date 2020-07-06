@@ -1,0 +1,6 @@
+@import './a.css';
+
+body {
+  background-color: coral;
+  transform: translateY(100px);
+}
