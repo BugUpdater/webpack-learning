@@ -51,6 +51,30 @@ module.exports = {
           'less-loader',
         ]
       },
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env'
+              ],
+              plugins: [
+                // ES7 新语法：类装饰器、类属性（这两个插件，decorators必须放在class-properties前面）
+                ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                ['@babel/plugin-proposal-class-properties', { "loose": true }],
+                // 抽取babel公共的工具类函数
+                '@babel/plugin-transform-runtime',
+              ]
+            }
+          }
+        ],
+        //包括
+        include: path.resolve(__dirname, 'src'),
+        //排除
+        exclude: /node_modules/
+      },
     ],
   }
 };
