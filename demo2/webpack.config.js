@@ -52,6 +52,13 @@ module.exports = {
         ]
       },
       {
+        // 多个匹配js文件的规则，从后往前执行，为了保证eslint先执行，可以设置enforce属性。
+        enforce: 'pre', // post、normal
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+      },
+      {
         test: /\.js$/,
         use: [
           {
@@ -73,7 +80,7 @@ module.exports = {
         //包括
         include: path.resolve(__dirname, 'src'),
         //排除
-        exclude: /node_modules/
+        // exclude: /node_modules/,
       },
     ],
   }
