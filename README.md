@@ -18,6 +18,6 @@
 - JS
   + ES6/ES7 -> ES5: `babel-loader` (presets/plugins/runtime/polyfill)
   + Format: `eslint-loader`
-  + Global Variable: `expose-loader`
+  + Global Variable: `expose-loader` `webpack.ProvidePlugin` `CDN(externals)`
 
 [Demo2 Notes](./demo2/notes.md)
