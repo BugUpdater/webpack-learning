@@ -8,7 +8,7 @@ body {
 #css-img {
   width: 100px;
   height: 100px;
-  background-image: url(./head-img.jpg);
+  background-image: url(./head-img.png);
   background-repeat: no-repeat;
   background-size: contain;
 }

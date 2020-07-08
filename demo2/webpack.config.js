@@ -12,8 +12,9 @@ module.exports = {
   mode: "development",
   entry: "./src/index.js",
   output: {
-    filename: "bundle.[hash:8].js",
+    filename: "js/bundle.[hash:8].js",
     path: path.resolve(__dirname, "build"),
+    // publicPath: 'http://www.example.com',
   },
   //开发服务器的配置
   devServer: {
@@ -49,19 +50,31 @@ module.exports = {
       // 图片
       {
         test: /\.(png|jpg|gif)$/i,
-        //做一个限制  当小于多少k 用base64来转化 base64文件可以减少http请求 但是比原文件大3分之1
-        // 否则用file-loader来产生真实的图片
-        use: 'file-loader',
-        // use: {
-        //   loader: 'url-loader',
-        //   options: {
-        //     limit: 1,
-        //     //输出的路径
-        //     outputPath: 'img/',
-        //     //只在图片中有一个公共的路径
-        //     publicPath: 'http:/111'
-        //   }
-        // }
+        // use: 'file-loader',
+        /* use: {
+          loader: 'file-loader',
+          options: {
+            // 5.0版本以上默认为ES6模块，转为commonjs以支持html-withimg-loader
+            esModule: false,
+          }
+        }, */
+        // url-loader 根据limit值(单位字节)，小于该值用base64编码，可以减少http请求，但会比原文件大三分之一
+        use: {
+          loader: 'url-loader',
+          options: {
+            // 5.0版本以上默认为ES6模块，转为commonjs以支持html-withimg-loader
+            esModule: false,
+            
+            limit: 1 * 1024,
+            // limit: 50 * 1024, // 50K以下转base64
+
+            // 输出的路径
+            outputPath: '/img/',
+            
+            // 只设置图片公共路径，配置publicPath时不会自动加上outputPath，因此要带上文件夹名称
+            // publicPath: 'http://www.example.com/img',
+          }
+        }
       },
       {
         test: /\.css$/i,

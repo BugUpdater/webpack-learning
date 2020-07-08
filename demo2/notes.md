@@ -20,8 +20,10 @@ yarn add -D eslint eslint-loader
 yarn add -D jquery
 yarn add -D expose-loader
 
+# 图片处理
 yarn add -D file-loader
 yarn add -D html-withimg-loader
+yarn add -D url-loader
 ```
 
 ### Babel
@@ -97,6 +99,8 @@ yarn add -D html-withimg-loader
 
 ## 图片处理
 
+需要 `file-loader` 支持。
+
 ### JS中引入图片
 ```js
 import headImg from './head-img.jpg';
@@ -104,14 +108,13 @@ const image = new Image();
 // image.src = './head-img.jpg'; // wrong!!!
 image.src = headImg;
 ```
-> 需要 `file-loader` 支持。
 
 ### CSS中引入背景图片
 ```css
 background-image: url(./head-img.jpg);
 ```
 
-```json
+```js
 new MiniCssExtractPlugin({
   filename: 'css/main.[hash].css',
 }),
@@ -123,9 +126,28 @@ new MiniCssExtractPlugin({
   }
 },
 ```
-> - 写法不变，不需要改成`require`或`import`的形式，`css-loader`会自动解析`url()`，同样需要`file-loader`支持。
-> - 使用`MiniCssExtractPlugin`将css文件放到内层文件夹，如`filename: 'css/main.[hash].css'`，则css文件中的url当前文件夹是css文件夹，需要同时设置才能使图片路径匹配上。
+> - 写法不变，不需要改成`require`或`import`的形式，`css-loader`会自动解析`url()`。
+> - 使用`MiniCssExtractPlugin`将css文件放到内层文件夹，如`filename: 'css/main.[hash].css'`，则css文件中的url当前文件夹是css文件夹，需要同时设置`publicPath`才能使图片路径匹配上。
 
 ### HTML中引入图片
 
 > 写法不变，加上loader: `html-withimg-loader`。
+
+**`file-loader`升级到5.0之后，默认为ES6模块，使用`html-withimg-loader`时url会被default属性包一层，因此需要在`file-loader`或`url-loader`规则中增加`options`设置`esModule: false`。**
+
+### Base64编码
+
+`url-loader` 根据limit值(单位字节)，小于该值用base64编码，可以减少http请求，但会比原文件大三分之一
+
+### 文件分类
+
+- 本地目录
+  + 图片：设置 `url-loader` 或 `file-loader` 的 `outputPath` 属性；
+  + JS：output--filename 中设置文件夹前缀，如 `filename: "js/bundle.[hash:8].js",`；
+  + CSS：MiniCssExtractPlugin--filename；
+- 远程公共路径
+  + 所有资源统一前缀：output--publicPath；
+  + 仅设置图片资源有前缀：`url-loader` 或 `file-loader` 的 `publicPath` 属性。
+
+**配置publicPath时，如“http://www.example.com”，结尾不需要斜杠。
+对于JS和CSS，filename前会自动用斜杠分隔，而对于图片，会直接拼接上outputPath，因此图片资源的outputPath最好设置为绝对路径，即斜杠开头，否则配置output--publicPath时会少了斜杠。**

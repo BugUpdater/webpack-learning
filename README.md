@@ -19,5 +19,9 @@
   + ES6/ES7 -> ES5: `babel-loader` (presets/plugins/runtime/polyfill)
   + Format: `eslint-loader`
   + Global Variable: `expose-loader` `webpack.ProvidePlugin` `CDN(externals)`
+- Images
+  + JS/CSS: `file-loader`/`url-loader`
+  + HTML: `file-loader`/`url-loader` + `html-withimg-loader`
+
 
 [Demo2 Notes](./demo2/notes.md)
