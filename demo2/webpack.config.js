@@ -41,17 +41,45 @@ module.exports = {
   }, */
   module: {
     rules: [
+      // HTML处理图片
       {
-        test: /\.css$/,
+        test: /\.(htm|html)$/i,
+        use: 'html-withimg-loader',
+      },
+      // 图片
+      {
+        test: /\.(png|jpg|gif)$/i,
+        //做一个限制  当小于多少k 用base64来转化 base64文件可以减少http请求 但是比原文件大3分之1
+        // 否则用file-loader来产生真实的图片
+        use: 'file-loader',
+        // use: {
+        //   loader: 'url-loader',
+        //   options: {
+        //     limit: 1,
+        //     //输出的路径
+        //     outputPath: 'img/',
+        //     //只在图片中有一个公共的路径
+        //     publicPath: 'http:/111'
+        //   }
+        // }
+      },
+      {
+        test: /\.css$/i,
         use: [
           // 'style-loader',
-          MiniCssExtractPlugin.loader,
+          // MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../',
+            }
+          },
           'css-loader',
           'postcss-loader',
         ]
       },
       {
-        test: /\.less$/,
+        test: /\.less$/i,
         use: [
           // 'style-loader',
           MiniCssExtractPlugin.loader,

@@ -49,3 +49,13 @@ function* gen() {
 console.log('generator:', gen().next());
 
 console.log('aaa'.includes('a'));
+
+// 图片处理 file-loader
+import headImg from './head-img.jpg';
+const image = new Image();
+// image.src = './head-img.jpg'; // wrong!!!
+image.src = headImg;
+image.width = 100;
+image.height = 100;
+
+document.body.appendChild(image);

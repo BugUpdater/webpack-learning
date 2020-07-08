@@ -19,6 +19,9 @@ yarn add -D eslint eslint-loader
 # 用 jquery 测试 expose-loader
 yarn add -D jquery
 yarn add -D expose-loader
+
+yarn add -D file-loader
+yarn add -D html-withimg-loader
 ```
 
 ### Babel
@@ -91,3 +94,38 @@ yarn add -D expose-loader
 > 设置webpack的 `externals` 属性，可以忽略模块内的import。
 
 **个人总结**：如果要一起打包，可以结合使用 `expose-loader` 和 `webpack.ProvidePlugin`；如果不想打包使用CDN，则用CDN方式结合 `externals` 属性。
+
+## 图片处理
+
+### JS中引入图片
+```js
+import headImg from './head-img.jpg';
+const image = new Image();
+// image.src = './head-img.jpg'; // wrong!!!
+image.src = headImg;
+```
+> 需要 `file-loader` 支持。
+
+### CSS中引入背景图片
+```css
+background-image: url(./head-img.jpg);
+```
+
+```json
+new MiniCssExtractPlugin({
+  filename: 'css/main.[hash].css',
+}),
+
+{
+  loader: MiniCssExtractPlugin.loader,
+  options: {
+    publicPath: '../',
+  }
+},
+```
+> - 写法不变，不需要改成`require`或`import`的形式，`css-loader`会自动解析`url()`，同样需要`file-loader`支持。
+> - 使用`MiniCssExtractPlugin`将css文件放到内层文件夹，如`filename: 'css/main.[hash].css'`，则css文件中的url当前文件夹是css文件夹，需要同时设置才能使图片路径匹配上。
+
+### HTML中引入图片
+
+> 写法不变，加上loader: `html-withimg-loader`。
