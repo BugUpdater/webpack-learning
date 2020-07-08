@@ -1,3 +1,10 @@
+import $ from 'jquery';
+// import $ from 'expose-loader?exposes=$!jquery';
+// import $ from 'expose-loader?exposes[]=$&exposes[]=jQuery!jquery';
+console.log(`\n【 $ 】===>\n`, $);
+console.log(`\n【 window.$ 】===>\n`, window.$);
+console.log(`\n【 window.jQuery 】===>\n`, window.jQuery);
+
 require('./index.css');
 require('./index.less');
 

@@ -15,6 +15,10 @@ yarn add @babel/polyfill
 
 # ESLint
 yarn add -D eslint eslint-loader
+
+# 用 jquery 测试 expose-loader
+yarn add -D jquery
+yarn add -D expose-loader
 ```
 
 ### Babel
@@ -36,3 +40,37 @@ yarn add -D eslint eslint-loader
     "ecmaFeatures": {}
   },
 ```
+
+## expose-loader
+
+- 加载模块时，webpack会用立即执行函数形成闭包，因此直接导入 `jquery` 的方式不会生成全局变量 `$` 和 `jQuery`，使用 `expose-loader` 将变量暴露到全局。
+
+- `expose-loader` 参数写法更新：
+```js
+  // 旧写法 --> 报错：options misses the property 'exposes'
+  import $ from 'expose-loader?$!jquery';
+  // 新写法
+  import $ from 'expose-loader?exposes=$!jquery';
+  // 多个全局变量
+  import $ from 'expose-loader?exposes[]=$&exposes[]=jQuery!jquery';
+```
+
+- 两种使用方式
+  + inline loader 内联loader方式：
+    ```
+    import $ from 'expose-loader?exposes[]=$&exposes[]=jQuery!jquery';
+    ```
+  + config 配置方式：
+    ```
+    {
+      test: require.resolve('jquery'),
+      // loader: 'expose-loader?exposes=$',
+      // loader: 'expose-loader?exposes[]=$&exposes[]=jQuery',
+      loader: 'expose-loader',
+      options: {
+        // exposes: '$',
+        exposes: ['$', 'jQuery'],
+      }
+    },
+    ```
+
