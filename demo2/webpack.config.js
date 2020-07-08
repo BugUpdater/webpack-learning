@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // 压缩css的插件
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   // mode: "production",
@@ -29,7 +30,15 @@ module.exports = {
       filename: 'css/main.[hash].css',
     }),
     new OptimizeCSSPlugin(),
+    // new webpack.ProvidePlugin({
+    //   $: 'jquery',
+    //   jQuery: 'jquery',
+    // }),
   ],
+  // 引入jquery会忽略掉(已经在cdn引入了)
+  /* externals: {
+    jquery: '$'
+  }, */
   module: {
     rules: [
       {
@@ -51,7 +60,8 @@ module.exports = {
           'less-loader',
         ]
       },
-      {
+      // expose-loader
+      /* {
         test: require.resolve('jquery'),
         // loader: 'expose-loader?exposes=$',
         // loader: 'expose-loader?exposes[]=$&exposes[]=jQuery',
@@ -60,7 +70,7 @@ module.exports = {
           // exposes: '$',
           exposes: ['$', 'jQuery'],
         }
-      },
+      }, */
       // ESLint
       /* {
         // 多个匹配js文件的规则，从后往前执行，为了保证eslint先执行，可以设置enforce属性。

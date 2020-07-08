@@ -41,9 +41,13 @@ yarn add -D expose-loader
   },
 ```
 
-## expose-loader
+## 全局变量处理
 
-- 加载模块时，webpack会用立即执行函数形成闭包，因此直接导入 `jquery` 的方式不会生成全局变量 `$` 和 `jQuery`，使用 `expose-loader` 将变量暴露到全局。
+加载模块时，webpack会用立即执行函数形成闭包，因此直接导入 `jquery` 的方式不会生成全局变量 `$` 和 `jQuery`。
+
+### 1. 使用 `expose-loader` 将变量暴露到全局
+
+- 结果：`$` 和 `window.$` 都有值。
 
 - `expose-loader` 参数写法更新：
 ```js
@@ -74,3 +78,16 @@ yarn add -D expose-loader
     },
     ```
 
+### 2. 使用 `webpack.ProvidePlugin` 插件
+
+- 结果：`$` 有值，`window.$` undefined。
+> `webpack.ProvidePlugin` 会自动为每个模块注入jquery，不需要在模块内编写import代码即可使用。
+> 使用上像全局变量，实际只是省略自己手写导入，仍为局部变量。
+
+### 3. 使用CDN引入jquery
+
+- 结果：`$` 和 `window.$` 都有值。
+> 使用CDN后不需要在模块内import，如果写了import也会一起打包。
+> 设置webpack的 `externals` 属性，可以忽略模块内的import。
+
+**个人总结**：如果要一起打包，可以结合使用 `expose-loader` 和 `webpack.ProvidePlugin`；如果不想打包使用CDN，则用CDN方式结合 `externals` 属性。
