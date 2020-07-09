@@ -53,5 +53,6 @@
   + IgnorePlugin: `new webpack.IgnorePlugin(/\.\/locale/, /moment/)`
   + Dll: `webpack.DllPlugin` `webpack.DllReferencePlugin`
   + Multiple Threads Pack: `happypack`
+  + Buildin: **tree-shaking**, **scope hosting**
 
 [Demo4 Notes](./demo4/notes.md)
