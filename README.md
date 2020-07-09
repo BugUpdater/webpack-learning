@@ -52,5 +52,6 @@
   + noParse: `noParse: /jquery|lodash/`
   + IgnorePlugin: `new webpack.IgnorePlugin(/\.\/locale/, /moment/)`
   + Dll: `webpack.DllPlugin` `webpack.DllReferencePlugin`
+  + Multiple Threads Pack: `happypack`
 
 [Demo4 Notes](./demo4/notes.md)
