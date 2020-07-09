@@ -9,8 +9,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  mode: "production", // 生产模式下才需要source-map
-  // mode: "development",
+  // mode: "production", // 生产模式下才需要source-map
+  mode: "development",
   entry: {
     home: "./src/index.js",
     other: "./src/other.js",
@@ -43,6 +43,23 @@ module.exports = {
     ignored: /node_modules/, // 忽略检测对象
   }, */
 
+  resolve: {
+    // 指定解析模块路径
+    modules: [path.resolve(__dirname, 'other_modules_path'), 'node_modules'],
+    
+    // import 'bootstrap' 解析成 import 'bootstrap/dist/css/bootstrap.css'
+    // 方法一：修改模块入口文件的key值，默认main
+    mainFields: ['style', 'main'],
+    // 方法二：增加别名
+    alias: {
+      bootstrap: 'bootstrap/dist/css/bootstrap.css',
+    },
+
+    // import模块时省略后缀名，自动依次按下列后缀查找文件
+    // (只对本地文件模块有效，即./或../开头的模块)
+    extensions: ['.js', '.css', '.json', '.vue'],
+  },
+
   plugins: [
     // 同一个html模版生成不同的入口html
     new HtmlWebpackPlugin({
@@ -73,7 +90,10 @@ module.exports = {
   ],
   module: {
     rules: [
-
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      }
     ],
   }
 };

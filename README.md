@@ -36,5 +36,6 @@
 - Webpack Propertis
   + `devtool`: Source Map
   + `watch` `watchOptions`: Auto Rebuild
+  + `resolve`: Resolve Modules
 
 [Demo3 Notes](./demo3/notes.md)
