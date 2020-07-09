@@ -23,5 +23,18 @@
   + JS/CSS: `file-loader`/`url-loader`
   + HTML: `file-loader`/`url-loader` + `html-withimg-loader`
 
-
 [Demo2 Notes](./demo2/notes.md)
+
+## Demo3
+- Multiple Entries
+  + JS: output--filename ([name].js)
+  + HTML: `html-webpack-plugin` (chunks)
+- Little Plugins
+  + `clean-webpack-plugin`
+  + `copy-webpack-plugin`
+  + buidin: `webpack.BannerPlugin`
+- Webpack Propertis
+  + `devtool`: Source Map
+  + `watch` `watchOptions`: Auto Rebuild
+
+[Demo3 Notes](./demo3/notes.md)
