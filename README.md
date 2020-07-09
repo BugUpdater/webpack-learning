@@ -46,3 +46,11 @@
   + Split Config: `webpack-merge`
 
 [Demo3 Notes](./demo3/notes.md)
+
+## Demo4
+- optimization
+  + noParse: `noParse: /jquery|lodash/`
+  + IgnorePlugin: `new webpack.IgnorePlugin(/\.\/locale/, /moment/)`
+  + Dll: `webpack.DllPlugin` `webpack.DllReferencePlugin`
+
+[Demo4 Notes](./demo4/notes.md)
