@@ -21,9 +21,34 @@ module.exports = {
     path: path.resolve(__dirname, "build"),
   },
   devServer: {
-    port: 3000,
+    port: 3000, // 服务端的端口为5000
     contentBase: "./build",
     compress: true,
+
+    // 简单转发
+    /* proxy: {
+      '/user': 'http://localhost:5000',
+      '/address': 'http://localhost:5000',
+    }, */
+
+    // 统一前缀转发并重写路径
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        pathRewrite: {
+          '^/api': '',
+        },
+      },
+    },
+
+    // mock数据
+    before(app) {
+      app.get('/api/user', (req, res) => {
+        res.json({
+          name: 'mock name'
+        })
+      })
+    }
   },
 
   // 行和列，单独
@@ -46,7 +71,7 @@ module.exports = {
   resolve: {
     // 指定解析模块路径
     modules: [path.resolve(__dirname, 'other_modules_path'), 'node_modules'],
-    
+
     // import 'bootstrap' 解析成 import 'bootstrap/dist/css/bootstrap.css'
     // 方法一：修改模块入口文件的key值，默认main
     mainFields: ['style', 'main'],

@@ -37,5 +37,9 @@
   + `devtool`: Source Map
   + `watch` `watchOptions`: Auto Rebuild
   + `resolve`: Resolve Modules
+- Cross Origin
+  + `proxy`
+  + `before(app)`(mock)
+  + `webpack-dev-middleware`
 
 [Demo3 Notes](./demo3/notes.md)

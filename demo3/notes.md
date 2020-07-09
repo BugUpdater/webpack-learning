@@ -6,6 +6,8 @@ yarn add -D clean-webpack-plugin
 yarn add -D copy-webpack-plugin
 
 yarn add bootstrap
+
+yarn add -D webpack-dev-middleware
 ```
 
 ## 多页应用
@@ -44,3 +46,11 @@ alias: {
   bootstrap: 'bootstrap/dist/css/bootstrap.css',
 }
 ```
+
+## 跨域问题
+
+服务端用express，由于 `webpack-dev-server` 依赖于express，无需再安装express。
+
+- `devServer` -- `proxy`
+- `devServer` -- `before(app) {}`: mock数据，优先级高于proxy
+- 直接在node服务端利用中间件 `webpack-dev-middleware` 启动前端web服务
