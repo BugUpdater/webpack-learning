@@ -68,6 +68,8 @@ module.exports = {
             limit: 1 * 1024,
             // limit: 50 * 1024, // 50K以下转base64
 
+            name: '[hash:10].[ext]',
+
             // 输出的路径
             outputPath: '/img/',
             
