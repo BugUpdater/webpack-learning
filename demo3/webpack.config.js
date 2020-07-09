@@ -112,6 +112,16 @@ module.exports = {
 
     // 版权插件
     new webpack.BannerPlugin('Make in China! Author: BugUpdater. -- 2020.7.9'),
+
+    // 注入环境变量
+    new webpack.DefinePlugin({
+      // DEV_ENV: '"production"',
+      DEV_ENV: JSON.stringify('production'),
+      BoolTest: 'true',
+      NumberTest1: '3',
+      NumberTest2: '3 + 5',
+      NumberTest3: JSON.stringify('3 + 5'),
+    }),
   ],
   module: {
     rules: [

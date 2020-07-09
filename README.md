@@ -41,5 +41,8 @@
   + `proxy`
   + `before(app)`(mock)
   + `webpack-dev-middleware`
+- Environment
+  + Env Variables: `webpack.DefinePlugin`
+  + Split Config: `webpack-merge`
 
 [Demo3 Notes](./demo3/notes.md)

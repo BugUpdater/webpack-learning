@@ -8,6 +8,8 @@ yarn add -D copy-webpack-plugin
 yarn add bootstrap
 
 yarn add -D webpack-dev-middleware
+
+yarn add -D webpack-merge
 ```
 
 ## 多页应用
@@ -54,3 +56,9 @@ alias: {
 - `devServer` -- `proxy`
 - `devServer` -- `before(app) {}`: mock数据，优先级高于proxy
 - 直接在node服务端利用中间件 `webpack-dev-middleware` 启动前端web服务
+
+## Merge Config
+```sh
+yarn build --config webpack.dev.config
+yarn build --config webpack.prod.config
+```
