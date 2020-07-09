@@ -5,6 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "build": "webpack",
+    "build:react": "webpack --config webpack.config.react.js",
     "dev": "webpack-dev-server --progress"
   },
   "repository": {
