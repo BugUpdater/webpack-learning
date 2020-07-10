@@ -42,3 +42,11 @@ const b = 2;
 const c = 3;
 const d = a + b + c;
 console.log(d + '---------');
+
+// splitChunks测试
+import './a';
+import './b';
+
+import $ from 'jquery';
+
+console.log('index splitChunks test');

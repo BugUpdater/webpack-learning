@@ -7,9 +7,12 @@ const Happypack = require('happypack');
 module.exports = {
   mode: 'production',
   // mode: 'development',
-  entry: './src/index.js',
+  entry: {
+    home: './src/index.js',
+    other: './src/other.js',
+  },
   output: {
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "build"),
   },
   devServer: {
@@ -17,6 +20,26 @@ module.exports = {
     contentBase: "./build",
     compress: true,
     // open: true,
+  },
+  optimization: {
+    // splitChunks抽离出的代码底层用了Jsonp
+    splitChunks: {  // 分割代码块
+      cacheGroups: {  // 缓存组
+        common: {    // 公共模块 
+          chunks: 'initial',
+          minSize: 0, // 模块大小多大以上开始抽离
+          minChunks: 2, // 模块引用次数满足多少次开始抽离
+        },
+        // 把jquery等第三方模块先抽离到vendor.js，其它再抽离到common.js
+        vendor: {  // 一般用vendor表示第三方模块
+          priority: 1, // 默认从上到下应用缓存组，用priority属性先抽离第三方模块
+          test: /node_modules/,
+          chunks: 'initial',
+          minSize: 0,
+          minChunks: 2,
+        }
+      },
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({

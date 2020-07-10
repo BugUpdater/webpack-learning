@@ -54,5 +54,6 @@
   + Dll: `webpack.DllPlugin` `webpack.DllReferencePlugin`
   + Multiple Threads Pack: `happypack`
   + Buildin: **tree-shaking**, **scope hosting**
+  + Common Codes(Multiple Entries): `splitChunks`
 
 [Demo4 Notes](./demo4/notes.md)
