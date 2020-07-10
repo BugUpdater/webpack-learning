@@ -1,4 +1,5 @@
 # webpack-learning
+
 > 学习Webpack的代码笔记整理
 
 ## Demo1
@@ -55,5 +56,6 @@
   + Multiple Threads Pack: `happypack`
   + Buildin: **tree-shaking**, **scope hosting**
   + Common Codes(Multiple Entries): `splitChunks`
+  + HMR: `webpack.HotModuleReplacementPlugin` `webpack.NamedModulesPlugin` `module.hot.accept()`
 
 [Demo4 Notes](./demo4/notes.md)

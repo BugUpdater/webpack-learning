@@ -20,6 +20,9 @@ module.exports = {
     contentBase: "./build",
     compress: true,
     // open: true,
+
+    //热更新
+    hot: true,
   },
   optimization: {
     // splitChunks抽离出的代码底层用了Jsonp
@@ -71,6 +74,9 @@ module.exports = {
       id: 'css',
       use: ['style-loader', 'css-loader'],
     }),
+
+    new webpack.HotModuleReplacementPlugin(), // 热更新插件
+    new webpack.NamedModulesPlugin(), // 热更新控制台打印名字插件([HMR]  - ./src/source.js)
   ],
   module: {
     // 对于确定是独立的模块如jquery或lodash，用noParse使webpack不解析它们的依赖包

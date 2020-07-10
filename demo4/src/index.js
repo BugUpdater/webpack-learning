@@ -50,3 +50,18 @@ import './b';
 import $ from 'jquery';
 
 console.log('index splitChunks test');
+
+// 热更新测试
+import str from './source.js';
+const setBoxContent = str => document.querySelector('#hmr-box').innerText = str;
+setBoxContent(str);
+
+if (module.hot) {
+  // 需要热更新的模块都配置module.hot条件判断代码块里，第2个参数是可选的回调函数
+  module.hot.accept('./source.js', () => {
+    console.log('source.js 更新了!!!');
+    setBoxContent(str);
+  });
+
+  module.hot.accept('./index.css');
+}
