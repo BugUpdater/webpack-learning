@@ -2,7 +2,9 @@
 
 > 学习Webpack的代码笔记整理
 
+
 ## Demo1
+
 - Base Config: `mode`/`entry`/`output`
 - Html: `html-webpack-plugin`
 - Dev Server: `webpack-dev-server`
@@ -15,7 +17,9 @@
 
 [Demo1 Notes](./demo1/notes.md)
 
+
 ## Demo2
+
 - JS
   + ES6/ES7 -> ES5: `babel-loader` (presets/plugins/runtime/polyfill)
   + Format: `eslint-loader`
@@ -26,7 +30,9 @@
 
 [Demo2 Notes](./demo2/notes.md)
 
+
 ## Demo3
+
 - Multiple Entries
   + JS: output--filename ([name].js)
   + HTML: `html-webpack-plugin` (chunks)
@@ -48,7 +54,9 @@
 
 [Demo3 Notes](./demo3/notes.md)
 
+
 ## Demo4
+
 - optimization
   + noParse: `noParse: /jquery|lodash/`
   + IgnorePlugin: `new webpack.IgnorePlugin(/\.\/locale/, /moment/)`
@@ -60,3 +68,9 @@
   + HMR: `webpack.HotModuleReplacementPlugin` `webpack.NamedModulesPlugin` `module.hot.accept()`
 
 [Demo4 Notes](./demo4/notes.md)
+
+
+## Demo5
+
+- tapable
+  + Sync: `SyncHook` `SyncBailHook` `SyncWaterfallHook` `SyncLoopHook`
