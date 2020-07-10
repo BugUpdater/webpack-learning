@@ -74,3 +74,4 @@
 
 - tapable
   + Sync: `SyncHook` `SyncBailHook` `SyncWaterfallHook` `SyncLoopHook`
+  + Async: `AsyncParallelHook(AsyncParallelBailHook)` `AsyncSeriesHook(AsyncSeriesBailHook)` `AsyncSeriesWaterfallHook`
