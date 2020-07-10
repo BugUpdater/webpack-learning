@@ -56,6 +56,7 @@
   + Multiple Threads Pack: `happypack`
   + Buildin: **tree-shaking**, **scope hosting**
   + Common Codes(Multiple Entries): `splitChunks`
+  + Lazy Load: `import('xxx').then(data => console.log(data.default));`
   + HMR: `webpack.HotModuleReplacementPlugin` `webpack.NamedModulesPlugin` `module.hot.accept()`
 
 [Demo4 Notes](./demo4/notes.md)

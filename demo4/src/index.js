@@ -51,6 +51,20 @@ import $ from 'jquery';
 
 console.log('index splitChunks test');
 
+
+// 懒加载测试
+let button = document.createElement('button');
+button.innerText = 'Lazy Load Button';
+// vue react懒加载 原理
+button.addEventListener('click', () => {
+  // import()语法：实现Jsonp动态加载文件
+  import('./lazy-load.js').then(data => {
+    console.log('lazy-load:', data.default);
+  });
+});
+document.body.append(button);
+
+
 // 热更新测试
 import str from './source.js';
 const setBoxContent = str => document.querySelector('#hmr-box').innerText = str;

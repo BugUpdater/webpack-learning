@@ -75,6 +75,12 @@ new webpack.DllReferencePlugin({
 - `minSize`: 模块大小多大以上开始抽离
 - `minChunks`: 模块引用次数满足多少次开始抽离
 
+### 懒加载(Lazy Load)
+
+- import()语法：实现Jsonp动态加载文件
+- 懒加载的模块会以 `output--filename` 定义的格式单独打包，文件名中 `[name]` 是数字。
+- 以前 `import()` 语法还在草案时，需要再加个babel插件：`@babel/plugin-syntax-dynamic-import`，现在不需要了。
+
 ### 热更新(HMR - Hot Module Replacement)
 
 - Webpack所需配置：
