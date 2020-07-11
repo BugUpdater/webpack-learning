@@ -1,6 +1,9 @@
-# webpack-learning
+# webpack-learning (2020.07)
 
 > 学习Webpack的代码笔记整理
+
+- webpack 4.43.0
+- babel 7.10.4
 
 
 ## Demo1
