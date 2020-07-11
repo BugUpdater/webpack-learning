@@ -75,3 +75,19 @@
 - tapable
   + Sync: `SyncHook` `SyncBailHook` `SyncWaterfallHook` `SyncLoopHook`
   + Async: `AsyncParallelHook(AsyncParallelBailHook)` `AsyncSeriesHook(AsyncSeriesBailHook)` `AsyncSeriesWaterfallHook`
+
+
+## Demo6
+
+- write a simple webpack
+  + bin project - `my-webpack`: `fs` `path` AST(`babylon` `@babel/types` `@babel/traverse` `@babel/generator`) `tapable` `ejs`
+  + test project: write loaders(`style-loader` `less-loader`), write plugins(`tapable`)
+
+```sh
+    # bin project
+    npm link
+
+    # test project
+    npm link my-webpack
+    npx my-webpack
+```
